@@ -1,0 +1,32 @@
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 4px;
+    width: 100%;
+}
+
+.input-label {
+    margin-bottom: 3px;
+}
+
+#input-field {
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #000 !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#input-field:focus {
+    outline: none !important;
+    border: 1px solid #179dff !important;
+}
+
+textarea {
+    resize: none;
+    font-family: 'Tahoma';
+}
