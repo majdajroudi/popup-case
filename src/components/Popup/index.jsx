@@ -4,12 +4,26 @@ import InputField from "../InputField"
 import SelectField from "../SelectField"
 import CloseIcon from "../../images/close-icon.svg"
 import "./index.css"
-import { toHaveFormValues } from "@testing-library/jest-dom/dist/matchers";
 
 export default function Popup({ headline, description }) {
     const [fontOptions, setFontOptions] = useState([]);
-    const [selectedFont, setSelectedFont] = useState("")
+    const [formState, setFormState] = useState({
+        name: {
+            value: "",
+            valid: true
+        },
+        email: {
+            value: "",
+            valid: true
+        },
+        font: {
+            value: "",
+            valid: true
+        },
+
+    })
     const { setSubmitted } = PopupContextConsumer();
+    const EMAIL_VALIDATION_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
     useEffect(() => {
         fetch("https://apiv2.popupsmart.com/api/googlefont")
@@ -25,13 +39,36 @@ export default function Popup({ headline, description }) {
             })
     }, [])
 
-    useEffect(() => {
-        console.log("selected", selectedFont)
-    }, [selectedFont])
-
-    const handleChange = (newValue) => {
+    const handleFontChange = (newValue) => {
         const newFontObject = fontOptions.find((currFont) => currFont.family === newValue)
-        setSelectedFont(newFontObject)
+        handleFieldChange("font", newFontObject)
+    }
+
+    const handleFieldChange = (field, newValue) => {
+        setFormState({ ...formState, [field]: { value: newValue, valid: true } })
+    }
+
+    const handleValidation = () => {
+        const invalidFields = [];
+        if (formState.name.value.length === 0) {
+            invalidFields.push("name")
+        }
+        if (!EMAIL_VALIDATION_REGEX.test(formState.email.value)) {
+            invalidFields.push("email")
+        }
+        if (!formState.font.value) {
+            invalidFields.push("font")
+        }
+
+        if (invalidFields.length > 0) {
+            const _formState = { ...formState }
+            invalidFields.forEach(currField => {
+                _formState[currField].valid = false;
+            })
+            setFormState({ ..._formState })
+        } else {
+            setSubmitted(true)
+        }
     }
 
     return (
@@ -58,30 +95,34 @@ export default function Popup({ headline, description }) {
             <div className="popup-body">
                 <InputField
                     placeholder="Your name"
+                    value={formState.name.value}
+                    onChange={(e) => handleFieldChange("name", e.target.value)}
                     className="popup-input-field"
                     style={{ backgroundColor: "#E5E5E5", borderWidth: 0 }}
                     wrapperStyle={{ width: "50%" }}
-                    error={false}
+                    error={!formState.name.valid}
                     errorMessage="Invalid name"
                 />
                 <InputField
                     placeholder="Email"
                     className="popup-input-field"
+                    value={formState.email.value}
+                    onChange={(e) => handleFieldChange("email", e.target.value)}
                     style={{ backgroundColor: "#E5E5E5", borderWidth: 0 }}
                     wrapperStyle={{ width: "50%" }}
-                    error={false}
-                    errorMessage="Invalid name"
+                    error={!formState.email.valid}
+                    errorMessage="Invalid email"
                 />
 
                 <SelectField
                     options={fontOptions}
-                    value={selectedFont}
-                    handleChange={handleChange}
-                    error={false}
-                    errorMessage="Invalid name"
+                    value={formState.font.value}
+                    handleChange={handleFontChange}
+                    error={!formState.font.valid}
+                    errorMessage="Invalid selection"
                 />
 
-                <button className="submit-button" onClick={() => setSubmitted(true)}>
+                <button className="submit-button" onClick={() => handleValidation()}>
                     GET MY 30% OFF
                 </button>
             </div>

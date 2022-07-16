@@ -1,4 +1,5 @@
 import React from "react"
+import ErrorIcon from "../../images/error-icon.svg"
 import "./index.css"
 
 export default function InputField({
@@ -11,37 +12,36 @@ export default function InputField({
     style = {},
     wrapperStyle = {},
     className = "",
-    maxlength = "5000"
+    maxlength = "5000",
+    error = false,
+    errorMessage = "Invalid input"
 }) {
-    console.log("max", maxlength)
+
+    const inputProps = {
+        type: type,
+        id: "input-field",
+        value: value,
+        onChange: onChange,
+        placeholder: placeholder,
+        style: { ...style },
+        maxlength: maxlength,
+        className: className
+    }
 
     return (
         <div className="input-wrapper" style={{ ...wrapperStyle }}>
             {label && <label className="input-label" for="input-field">{label}</label>}
             {
                 multiline ?
-                    <textarea
-                        type={type}
-                        id="input-field"
-                        value={value}
-                        onChange={onChange}
-                        placeholder={placeholder}
-                        style={{ ...style }}
-                        maxlength={maxlength}
-                        className={className}
-                    /> :
-                    <input
-                        type={type}
-                        id="input-field"
-                        value={value}
-                        onChange={onChange}
-                        placeholder={placeholder}
-                        style={{ ...style }}
-                        className={className}
-                        maxlength={maxlength}
-                    />
+                    <textarea {...inputProps} /> :
+                    <input {...inputProps} />
             }
-
+            {
+                error &&
+                <p className="error-message">
+                    <span><img src={ErrorIcon} alt="error-icon" /> {errorMessage}</span>
+                </p>
+            }
         </div>
     )
 }

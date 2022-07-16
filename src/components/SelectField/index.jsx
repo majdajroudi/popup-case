@@ -1,7 +1,8 @@
 import React from "react";
+import ErrorIcon from "../../images/error-icon.svg"
 import "./index.css"
 
-export default function SelectField({ options, value, handleChange }) {
+export default function SelectField({ options, value, handleChange, error = false, errorMessage = "Invalid selection" }) {
     return (
         <div className="select-field-wrapper">
             <select
@@ -22,6 +23,12 @@ export default function SelectField({ options, value, handleChange }) {
                 }
 
             </select>
+            {
+                error &&
+                <p className="error-message">
+                    <span><img src={ErrorIcon} alt="error-icon" /> {errorMessage}</span>
+                </p>
+            }
         </div>
     )
 }

@@ -28,7 +28,6 @@ export default function Sidebar() {
                 placeholder="Description"
                 value={description}
                 maxlength="80"
-
                 onChange={(e) => setDescription(e.target.value)}
                 multiline
             />

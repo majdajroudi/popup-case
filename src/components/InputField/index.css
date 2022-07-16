@@ -30,3 +30,14 @@ textarea {
     resize: none;
     font-family: 'Tahoma';
 }
+
+.error-message {
+    color: #EA0F0F;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 1px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
