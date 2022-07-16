@@ -1,3 +1,10 @@
+# Project Description
+
+# Assumptions
+- The headliner of the pop up is always in caps
+- No "Open Popup" button is needed 
+- No "Back" button is needed after submission
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
