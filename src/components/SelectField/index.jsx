@@ -1,15 +1,25 @@
 import React from "react";
 import "./index.css"
 
-export default function SelectField() {
+export default function SelectField({ options, value, handleChange }) {
     return (
         <div className="select-field-wrapper">
-            <select name="dynamic" className="select-field">
-                <option selected disabled>Choose a book format</option>
-                <option value="pdf">PDF</option>
-                <option value="txt">TXT</option>
-                <option value="epub">ePub</option>
-                <option value="fb2">fb2</option>
+            <select
+                placeholder="Select Font"
+                disabled={!options.length}
+                value={value?.family}
+                className="select-field"
+                onChange={(e) => handleChange(e.target.value)}>
+                {
+                    options.length ?
+                        (
+                            <>
+                                <option selected disabled>Select font</option>
+                                {options.map((currOption) => <option value={currOption.family}>{currOption.family}</option>)}
+                            </>
+                        ) :
+                        <option selected disabled>(No data)</option>
+                }
 
             </select>
         </div>

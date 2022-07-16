@@ -1,9 +1,11 @@
 # Project Description
 
 # Assumptions
-- The headliner of the pop up is always in caps
+- The headliner of the popup is always in caps
 - No "Open Popup" button is needed 
 - No "Back" button is needed after submission
+- Success message is "Success by default"
+
 
 # Getting Started with Create React App
 

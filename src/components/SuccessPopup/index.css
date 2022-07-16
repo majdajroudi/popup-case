@@ -1,0 +1,15 @@
+.success-popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.success-message {
+    margin: 0;
+    font-size: 3rem;
+}
+
+.success-icon {
+    margin: 0;
+}
