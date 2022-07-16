@@ -10,8 +10,10 @@ export default function InputField({
     placeholder,
     style = {},
     wrapperStyle = {},
-    className = ""
+    className = "",
+    maxlength = "5000"
 }) {
+    console.log("max", maxlength)
 
     return (
         <div className="input-wrapper" style={{ ...wrapperStyle }}>
@@ -25,6 +27,7 @@ export default function InputField({
                         onChange={onChange}
                         placeholder={placeholder}
                         style={{ ...style }}
+                        maxlength={maxlength}
                         className={className}
                     /> :
                     <input
@@ -35,6 +38,7 @@ export default function InputField({
                         placeholder={placeholder}
                         style={{ ...style }}
                         className={className}
+                        maxlength={maxlength}
                     />
             }
 

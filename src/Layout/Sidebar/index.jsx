@@ -19,6 +19,7 @@ export default function Sidebar() {
                 label="Headline"
                 placeholder="Headline"
                 value={headline}
+                maxlength="17"
                 onChange={(e) => setHeadline(e.target.value)}
             />
 
@@ -26,6 +27,8 @@ export default function Sidebar() {
                 label="Description"
                 placeholder="Description"
                 value={description}
+                maxlength="80"
+
                 onChange={(e) => setDescription(e.target.value)}
                 multiline
             />
@@ -34,6 +37,7 @@ export default function Sidebar() {
                 label="Success message"
                 placeholder="Success message"
                 value={successMessage}
+                maxlength="50"
                 onChange={(e) => setSuccessMessage(e.target.value)}
             />
         </div>
