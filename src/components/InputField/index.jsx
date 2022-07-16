@@ -1,11 +1,21 @@
 import React from "react"
 import "./index.css"
 
-export default function InputField({ value, label, onChange, type = "text", multiline = false, placeholder }) {
+export default function InputField({
+    value,
+    label,
+    onChange,
+    type = "text",
+    multiline = false,
+    placeholder,
+    style = {},
+    wrapperStyle = {},
+    className = ""
+}) {
 
     return (
-        <div className="input-wrapper">
-            <label className="input-label" for="input-field">{label}</label>
+        <div className="input-wrapper" style={{ ...wrapperStyle }}>
+            {label && <label className="input-label" for="input-field">{label}</label>}
             {
                 multiline ?
                     <textarea
@@ -14,6 +24,8 @@ export default function InputField({ value, label, onChange, type = "text", mult
                         value={value}
                         onChange={onChange}
                         placeholder={placeholder}
+                        style={{ ...style }}
+                        className={className}
                     /> :
                     <input
                         type={type}
@@ -21,6 +33,8 @@ export default function InputField({ value, label, onChange, type = "text", mult
                         value={value}
                         onChange={onChange}
                         placeholder={placeholder}
+                        style={{ ...style }}
+                        className={className}
                     />
             }
 
