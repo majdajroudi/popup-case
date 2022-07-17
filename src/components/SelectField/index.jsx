@@ -16,7 +16,7 @@ export default function SelectField({ options, value, handleChange, error = fals
                         (
                             <>
                                 <option selected={!value} disabled>Select font</option>
-                                {options.map((currOption) => <option value={currOption.family}>{currOption.family}</option>)}
+                                {options.map((currOption, index) => <option key={index} value={currOption.family}>{currOption.family}</option>)}
                             </>
                         ) :
                         <option selected disabled>(No data)</option>
