@@ -26,6 +26,7 @@
 }
 
 .popup-body {
+    margin-top: 5px;
     height: 60%;
 }
 
@@ -36,12 +37,13 @@
     -webkit-text-size-adjust: auto;
     font-weight: 500;
     margin: 0 0 5px 0;
+    white-space: nowrap;
 }
 
 .popup-description {
     font-size: 0.9rem;
     margin-top: 0;
-    width: 45%;
+    width: 60%;
 }
 
 .popup-input-field {
