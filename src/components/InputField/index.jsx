@@ -12,7 +12,7 @@ export default function InputField({
     style = {},
     wrapperStyle = {},
     className = "",
-    maxlength = "5000",
+    maxLength = "5000",
     error = false,
     errorMessage = "Invalid input"
 }) {
@@ -24,13 +24,13 @@ export default function InputField({
         onChange: onChange,
         placeholder: placeholder,
         style: { ...style },
-        maxlength: maxlength,
+        maxLength: maxLength,
         className: className
     }
 
     return (
         <div className="input-wrapper" style={{ ...wrapperStyle }}>
-            {label && <label className="input-label" for="input-field">{label}</label>}
+            {label && <label className="input-label" htmlFor="input-field">{label}</label>}
             {
                 multiline ?
                     <textarea {...inputProps} /> :

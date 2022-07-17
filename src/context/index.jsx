@@ -17,7 +17,7 @@ export default function PopupContextProvider({ children }) {
             valid: true
         },
         font: {
-            value: JSON.parse(localStorage.getItem("font")) || "",
+            value: localStorage.getItem("font") ? JSON.parse(localStorage.getItem("font")) : "",
             valid: true
         },
     })

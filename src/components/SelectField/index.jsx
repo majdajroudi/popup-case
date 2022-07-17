@@ -8,18 +8,18 @@ export default function SelectField({ options, value, handleChange, error = fals
             <select
                 placeholder="Select Font"
                 disabled={!options.length}
-                value={value?.family}
+                value={options.length > 0 ? value?.family || "placeholder" : "no-data"}
                 className="select-field"
                 onChange={(e) => handleChange(e.target.value)}>
                 {
                     options.length ?
                         (
                             <>
-                                <option selected={!value} disabled>Select font</option>
+                                <option value="placeholder" disabled>Select font</option>
                                 {options.map((currOption, index) => <option key={index} value={currOption.family}>{currOption.family}</option>)}
                             </>
                         ) :
-                        <option selected disabled>(No data)</option>
+                        <option value="no-data" disabled>(No data)</option>
                 }
 
             </select>
