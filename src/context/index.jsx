@@ -4,9 +4,34 @@ const PopupContext = createContext(undefined);
 
 export default function PopupContextProvider({ children }) {
     const [submitted, setSubmitted] = useState(false);
-    const [headline, setHeadline] = useState("");
-    const [description, setDescription] = useState("");
-    const [successMessage, setSuccessMessage] = useState("")
+    const [headline, setHeadline] = useState(localStorage.getItem("headline") || "");
+    const [description, setDescription] = useState(localStorage.getItem("description") || "");
+    const [successMessage, setSuccessMessage] = useState(localStorage.getItem("successMessage") || "")
+    const [formState, setFormState] = useState({
+        name: {
+            value: localStorage.getItem("name") || "",
+            valid: true
+        },
+        email: {
+            value: localStorage.getItem("email") || "",
+            valid: true
+        },
+        font: {
+            value: JSON.parse(localStorage.getItem("font")) || "",
+            valid: true
+        },
+    })
+
+    const handleSubmitForm = () => {
+        localStorage.setItem("headline", headline)
+        localStorage.setItem("description", description)
+        localStorage.setItem("successMessage", successMessage)
+        localStorage.setItem("name", formState.name.value)
+        localStorage.setItem("email", formState.email.value)
+        localStorage.setItem("font", JSON.stringify(formState.font.value))
+
+        setSubmitted(true)
+    }
 
     const value = {
         submitted,
@@ -16,7 +41,10 @@ export default function PopupContextProvider({ children }) {
         setSubmitted,
         setHeadline,
         setDescription,
-        setSuccessMessage
+        setSuccessMessage,
+        formState,
+        setFormState,
+        handleSubmitForm
     }
 
     return (

@@ -7,22 +7,7 @@ import "./index.css"
 
 export default function Popup({ headline, description }) {
     const [fontOptions, setFontOptions] = useState([]);
-    const [formState, setFormState] = useState({
-        name: {
-            value: "",
-            valid: true
-        },
-        email: {
-            value: "",
-            valid: true
-        },
-        font: {
-            value: "",
-            valid: true
-        },
-
-    })
-    const { setSubmitted } = PopupContextConsumer();
+    const { handleSubmitForm, formState, setFormState } = PopupContextConsumer();
     const EMAIL_VALIDATION_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
     useEffect(() => {
@@ -67,7 +52,7 @@ export default function Popup({ headline, description }) {
             })
             setFormState({ ..._formState })
         } else {
-            setSubmitted(true)
+            handleSubmitForm();
         }
     }
 

@@ -15,7 +15,7 @@ export default function SelectField({ options, value, handleChange, error = fals
                     options.length ?
                         (
                             <>
-                                <option selected disabled>Select font</option>
+                                <option selected={!value} disabled>Select font</option>
                                 {options.map((currOption) => <option value={currOption.family}>{currOption.family}</option>)}
                             </>
                         ) :
