@@ -13,7 +13,7 @@ export default function Sidebar() {
 
     return (
         <div className="sidebar">
-            <h4 className="sidebar-header">General information</h4>
+            <h4 className="sidebar-header">General Settings</h4>
 
             <InputField
                 label="Headline"

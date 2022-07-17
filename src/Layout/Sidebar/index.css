@@ -8,3 +8,8 @@
     align-items: flex-start;
     justify-content: flex-start;
 }
+
+.sidebar-header {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+}
